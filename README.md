@@ -2,13 +2,13 @@
 
 ## Setup
 
-For this tutorial we will use CMSSW_10_6_38 on lxplus 7. To set this up, run the following commands:
+For this tutorial we will use CMSSW_13_3_2 on lxplus 9. To set this up, run the following commands:
 
 ```
 # login to lxplus7
 
-cmsrel CMSSW_10_6_38
-cd CMSSW_10_6_38/src
+cmsrel CMSSW_13_3_2
+cd CMSSW_13_3_2/src
 cmsenv
 # Clone this repository into the src directory:
 git clone git@github.com:Offshell-Workshop-LPC/Herwig-tutorial.git
@@ -49,6 +49,15 @@ Try having a look in the .in, .log and .out text files, as well as opening the N
 ```
 rivet-mkhtml --mc-errs GluGluHToZZTo2L2Nu_M250_Powheg_JHUGen_Herwig7.yoda
 ```
+
+### Excerise: running MCFM
+
+Try instead performing a shower over a H->WW lhe generated with MCFM. To do this, make a copy of the fragment with a new name, remove the three lines importing the POWHEG specific settings, and change the gridpack in the externalLHEProducer:
+
+```
+/cvmfs/cms.cern.ch/phys_generator/gridpacks/UL/13TeV/slc7_amd64_gcc820/MCFM/MCFM_slc7_amd64_gcc820_CMSSW_10_6_8_MCFM_13TeV_ggHWWtoMNMN_SIG_NNPDF31.tgz
+```
+Then rerun `scram b` and the other commands to produce a config from the fragment, and run this.
 
 ## Herwig in matchbox mode
 
@@ -116,4 +125,4 @@ tar -xjvf Herwig-cache_dipole.CMSSW_10_6_38.lxplus7.tar.bz2
 cmsRun DYToLL_NLO_5FS_TuneCH3_13TeV_matchbox_herwig7_dipole_cfg.py  >& output.txt &
 ```
 
-Similarly, more cards could be tested modifying accordingly the commands passed inside Herwig through the CMSSW-Herwig-interface. Contact us if you want to get help on any particular process!
+We are currently working on expanding the number of Matchbox processes available in CMSSW. Contact us if you want to get help on any particular process!
